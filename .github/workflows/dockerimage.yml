@@ -12,9 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Login to GPR
-      run: docker login -u matthewrmshin -p "{{secrets.GITHUB_TOKEN}}" 'docker.pkg.github.com'
     - name: Build the Docker image
       run: docker build . --file 'Dockerfile' --tag "${IMAGETAG}"
+    - name: Test the Docker image
+      run: docker run --rm "${IMAGETAG}" uname -a
     - name: Deploy to GPR
-      run: docker push "${IMAGETAG}"
+      run: 
+        docker login -u matthewrmshin --password-stdin 'docker.pkg.github.com' <<<'{{secrets.GITHUB_TOKEN}}'
+        docker push "${IMAGETAG}"
