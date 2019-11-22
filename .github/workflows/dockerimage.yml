@@ -17,6 +17,6 @@ jobs:
     - name: Test the Docker image
       run: docker run --rm "${IMAGETAG}" uname -a
     - name: Deploy to GPR
-      run: 
+      run: |
         docker login -u matthewrmshin --password-stdin 'docker.pkg.github.com' <<<'{{secrets.GITHUB_TOKEN}}'
         docker push "${IMAGETAG}"
