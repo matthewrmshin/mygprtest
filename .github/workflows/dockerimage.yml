@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      IMAGETAG: "docker.pkg.github.com/${{github.repository}}/demo:latest"
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Login to GPR
+      run: docker login -u matthewrmshin -p "{{secrets.GITHUB_TOKEN}}" 'docker.pkg.github.com'
+    - name: Build the Docker image
+      run: docker build . --file 'Dockerfile' --tag "${IMAGETAG}"
+    - name: Deploy to GPR
+      run: docker push "${IMAGETAG}"
