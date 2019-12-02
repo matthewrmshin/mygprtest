@@ -4,7 +4,7 @@ import sys
 
 
 def hello(who: str = 'world'):
-    return f'Hello {who}!'
+    return f'Hello {who}! Hi!'
 
 
 if __name__ == '__main__':
