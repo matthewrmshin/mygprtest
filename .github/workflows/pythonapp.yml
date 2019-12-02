@@ -14,8 +14,10 @@ jobs:
       with:
         args: conda env update -p "${CONDA_PREFIX}" -f ./requirements.yml
     - name: Lint with flake8
-      run: |
-        flake8 . --show-source --statistics
+      uses: matthewrmshin/conda-action@master
+      with:
+        args: flake8 . --show-source --statistics
     - name: Test with pytest
-      run: |
-        env PYTHONPATH=$PWD pytest
+      uses: matthewrmshin/conda-action@master
+      with:
+        args: env PYTHONPATH=$PWD pytest
