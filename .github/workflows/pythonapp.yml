@@ -12,7 +12,7 @@ jobs:
     - name: Set up Conda
       uses: matthewrmshin/conda-action@master
       with:
-        args: conda env update
+        args: conda env update -p "${CONDA_PREFIX}" -f ./requirements.yml
     - name: Lint with flake8
       run: |
         flake8 . --show-source --statistics
