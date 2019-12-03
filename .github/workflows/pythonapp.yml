@@ -18,4 +18,4 @@ jobs:
     - name: Test with pytest
       uses: matthewrmshin/conda-action@master
       with:
-        args: env PYTHONPATH=$PWD pytest
+        args: env PYTHONPATH=. pytest
