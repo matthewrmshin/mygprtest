@@ -14,7 +14,7 @@ jobs:
     - name: Lint with flake8
       uses: matthewrmshin/conda-action@master
       with:
-        args: flake8 . --show-source --statistics
+        args: flake8 ./tests --show-source --statistics
     - name: Test with pytest
       uses: matthewrmshin/conda-action@master
       with:
